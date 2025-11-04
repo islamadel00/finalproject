@@ -17,11 +17,10 @@ export default function Home() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
-  const [category, setCategory] = useState("popular"); // 🔥 Tab system
+  const [category, setCategory] = useState("popular"); 
 
   const router = useRouter();
 
-  // ✅ Fetch movies dynamically based on selected category
   useEffect(() => {
     async function fetchMovies() {
       setLoading(true);
@@ -33,12 +32,10 @@ export default function Home() {
     fetchMovies();
   }, [category]);
 
-  // ✅ Filter movies based on search query
   const filteredMovies = movies.filter((movie) =>
     movie.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // ✅ Loading State
   if (loading) {
     return (
       <View
@@ -57,7 +54,6 @@ export default function Home() {
     );
   }
 
-  // ✅ Main UI
   return (
     <View
       style={{
@@ -66,7 +62,6 @@ export default function Home() {
         padding: 15,
       }}
     >
-      {/* 🔥 Dynamic title based on category */}
       <Text
         style={{
           color: theme === "light" ? "#000" : "#FFD700",
@@ -127,7 +122,6 @@ export default function Home() {
         ))}
       </View>
 
-      {/* 🔍 Search Input */}
       <TextInput
         placeholder="🔍 Search for a movie..."
         placeholderTextColor={theme === "light" ? "#888" : "#aaa"}
@@ -144,7 +138,6 @@ export default function Home() {
         onChangeText={setSearchQuery}
       />
 
-      {/* 🎥 Movie List */}
       <FlatList
         data={filteredMovies}
         keyExtractor={(item) => item.id.toString()}
@@ -181,7 +174,6 @@ export default function Home() {
                 {item.title}
               </Text>
 
-              {/* ❤️ Favorite Toggle */}
               <Pressable onPress={() => toggleFavorite(item)}>
                 <Text style={{ fontSize: 22 }}>
                   {favorites.some((fav) => fav.id === item.id) ? "❤️" : "🤍"}
