@@ -20,7 +20,6 @@ export default function MovieDetails() {
         const data = await response.json();
         setMovie(data);
 
-        // 🎞️ التريلر (الفيديوهات)
         const trailerRes = await fetch(
           `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${TMDB_API_KEY}&language=en-US`
         );

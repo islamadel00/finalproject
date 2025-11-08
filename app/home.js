@@ -88,7 +88,6 @@ export default function Home() {
         Showing {filteredMovies.length} results
       </Text>
 
-      {/* 🧭 Category Tabs */}
       <View
         style={{
           flexDirection: "row",
